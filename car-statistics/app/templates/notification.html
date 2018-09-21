@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notification page</title>
+</head>
+<body>
+      <button>Test notification</button>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+    <script type="text/javascript">
+      var socket = io.connect('http://' + document.domain + ':' + location.port);
+      socket.on( 'connect', function() {
+          var buttton = $( 'button' ).on( 'click', function() {
+              socket.emit( 'trigger notification', {} );
+          } );
+          alert("Зв'язок встановлено.");
+      } );
+      socket.on( 'my notification', function( msg ) {
+        console.log( msg );
+        alert("Hello world");
+      });
+
+  </script>
+</body>
+</html>
