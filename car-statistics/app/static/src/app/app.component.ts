@@ -12,14 +12,14 @@ export class AppComponent implements OnInit{
   constructor(private notification: NotificationService){ }
 
   ngOnInit() {
-    this.notification.messages.subscribe(msg => {
-      console.log(msg);
-    })
+    // this.notification.messages.subscribe(msg => {
+    //   console.log(msg);
+    // })
   }
 
-  sendMessage() {
-    this.notification.sendMsg("Test Message");
-  }
+  // sendMessage() {
+    // this.notification.sendMsg("Test Message");
+  // }
 
 }
 
