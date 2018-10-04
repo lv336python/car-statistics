@@ -21,11 +21,9 @@ def load_user(user_id):
     :param user_id:
     :return: user if is logged in or None
     """
-    user = User.query.filter_by(id=user_id).first()
+    user = User.query.get(user_id)
 
-    if user:
-        return user
-    return None
+    return user
 
 
 @app.route("/api/login", methods=['POST'])
@@ -37,10 +35,11 @@ def login():
     or incorrect responses
     """
     data = request.get_json()
+
     if 'user_id' in session:
         return json.dumps({
             'message': 'User is already logged in'
-        }), 400
+        }), 401
 
     user = User.query.filter(User.email == data['email']).first()
 
