@@ -96,7 +96,12 @@ def attributes(file_path):
     :param file_path: file which will be added to DB
     :return: json with file attributes
     """
-    attrbts = {'loaded': 'new'}
+    attrbts = dict()
+    attrbts['name'] = 'name'
+    attrbts['size'] = os.path.getsize(file_path)
+    attrbts['rows'] = 0
+    attrbts['date'] = time.time()
+    attrbts['modified'] = os.path.getctime(file_path)
     return attrbts
 
 
@@ -108,7 +113,7 @@ def get_user_file(file_id, user_id):
     :param user_id: id of file owner
     :return: path to file
     """
-    file = File.query.filter(File.id == file_id).first()
+    file = File.query.get(file_id)
     filename = file.path
     file_path = os.path.join(user_dir(user_id), filename)
     return file_path
