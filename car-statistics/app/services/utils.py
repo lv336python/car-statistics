@@ -114,6 +114,24 @@ def get_user_file(file_id, user_id):
     return file_path
 
 
+def temp_file(dataset_id):
+    """
+    Function returns path where temp file is located,
+    hash dataset_id with md5 algorithm and open temporary file as bytes
+    :param dataset_id: id of dataset_id
+    :return: path to file
+    """
+    file = dataset_to_excel(dataset_id)
+    ask = app.config['SECRET_KEY']
+    hashed = md5(f'{ask}{dataset_id}'.encode()).hexdigest()
+    temp_folder = os.path.join(app.config['TEMP_FOLDER'], hashed)
+    create_dir(app.config['TEMP_FOLDER'])
+    path = f"{temp_folder}.xlsx"
+    with open(path, 'wb') as out:
+        out.write(file.read())
+    return path
+
+
 def dataset_to_excel(dataset_id):
     """
     Writes dataset to excel file in-memory without creating excel file in the local storage
@@ -145,7 +163,6 @@ def dataset_to_excel(dataset_id):
         return byte_writer
     except Exception as e:
         print(e)
-
 
 
 def serialize(file):
