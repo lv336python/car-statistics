@@ -43,13 +43,14 @@ def send_email(to_whom, subject, template):
     :param template:
     :return:
     """
+    rec = to_whom if isinstance(to_whom, list) else [to_whom]
     msg = Message(
         subject,
-        recipients=[to_whom],
+        recipients=rec,
         html=template,
         sender=app.config['MAIL_DEFAULT_SENDER']
     )
-    send.apply_async([msg], serializer='pickle', link=notify_user.s(current_user.id))
+    send.apply_async([msg], serializer='pickle')
 
 
 def send_result_to_mail(recipients, file_name, file_content):

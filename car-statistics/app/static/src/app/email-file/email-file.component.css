@@ -98,5 +98,8 @@ border-radius: 10px;
 .send-to-email button:hover {
     background-color: rgba(179, 178, 176, 0.99);
 }
+.send-to-email{
+    width: 95%;
+}
 
 

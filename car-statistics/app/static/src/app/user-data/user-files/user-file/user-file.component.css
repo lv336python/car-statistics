@@ -3,4 +3,17 @@
 }
 .btn-danger{
     margin-left: 15px;
+    margin-top :5px;
+}
+.hr-best{
+  -moz-border-bottom-colors: none;
+  -moz-border-image: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  border-color: rgb(138, 7, 7) -moz-use-text-color rgb(240, 9, 9);
+  border-style: solid none;
+  border-width: 1px 0;
+  margin: 18px 0;
+
 }
