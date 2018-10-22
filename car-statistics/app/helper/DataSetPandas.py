@@ -1,6 +1,6 @@
 # pylint: disable=invalid-name
-"""
-ToDo
+"""This module contains class DataSetPandas which aggregates all the
+functionality needed to work with pandas
 """
 import pandas as pd
 

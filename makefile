@@ -35,20 +35,24 @@ run:
 	gnome-terminal -e "bash -c \"make celery; exec bash\""
 	python car-statistics/run.py
 
-back:
-	make db
-	make rabbitMQ
-
 install:
-	(cd $(STATIC_PATH) ; sudo npm install)
-	(cd $(STATIC_PATH) ; sudo npm install -g @angular/cli)
+	(cd $(STATIC_PATH) ; npm install)
+	npm install -g @angular/cli
 
 build: $(STATIC_PATH)angular.json
 	(cd $(STATIC_PATH) ; ng build)
 
-all:
-	make setup	
+
+backend:
+	make setup
+	make db
+	make rabbitMQ
+	make run
+
+frontend:
 	make install
 	make build
-	make back
-	make run
+
+all:
+	make frontend
+	make backend

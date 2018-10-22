@@ -1,11 +1,12 @@
 # pylint: disable=invalid-name
+"""This module contains class IDataSet which aggregates all the
+functionality needed to work with files
 """
-ToDo
-"""
-
 class IDataSet:
     """
-    ToDo
+    Class for working with files
+    It provides all necessary functionality
+    to work with files
     """
     def read(self, filename):  # pylint: disable=missing-docstring
         raise NotImplementedError
